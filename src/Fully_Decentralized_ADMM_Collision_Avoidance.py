@@ -367,6 +367,8 @@ class Agent:
         target_loc = self.target_traj_local()
 
         # i-로컬에서 선형화 정보 구성 (Nc U Nu)
+        # NOTE: Prediction 단계에서는 이 제약을 QP에 넣지 않지만(Splitting),
+        #       Coordination 단계에서 쓸 eta/hbar 초기화를 위해 계산은 유지합니다.
         neigh_ids = set(self.Nc) | set(self.Nu)
         lincons = []
         for j in neigh_ids:
@@ -383,13 +385,15 @@ class Agent:
             lincons.append((eta, xi_bar.copy(), xj_bar.copy(), base_gap.copy()))
 
         # QP (i-local)
+        # [MODIFICATION]: ADMM Splitting 전략에 따라 Prediction 단계에서는
+        #                 Dynamics만 고려하고 충돌 제약(lincons)은 제외합니다.
         x0_local = np.zeros(2)  # 로컬 원점
         prob, x, v, a = build_double_integrator_QP_local(
             x0_local, self.v0, target_loc,
             self.w, self.lmb,
             self.w_plus, self.lmb_plus,
             Q, R, v_max, a_max, rho, H, T,
-            lincons=None
+            lincons=None  # <--- 논문 Algorithm 2와 일치시키기 위해 None으로 변경
         )
         prob.solve(solver=SOLVER, verbose=False)
         if prob.status in (cp.OPTIMAL, cp.OPTIMAL_INACCURATE):
