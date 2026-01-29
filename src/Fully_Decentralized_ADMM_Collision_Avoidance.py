@@ -39,33 +39,33 @@ R = np.eye(2) * 0.1
 
 # flagship scenario (4 agents, crossing) - on paper
 
-# M            = 4            # number of agents
-# MAX_MPC      = 100           # MPC outer steps
-# safety_R     = 10.0         # safety radius
-# IS_COOP = [True, True, False, True]
+M            = 4            # number of agents
+MAX_MPC      = 100           # MPC outer steps
+safety_R     = 10.0         # safety radius
+IS_COOP = [True, True, False, True]
 
-# X0 = np.array([[-40, 40, 0, 0],   # x0 (global)
-#                [0,  0,  40, -40]])  # y0 (global)
-# V0 = np.array([[0, 0, 0, 0],   # vx (global)
-#                [0, 0, 0, 0]])  # vy (global)
-# G  = np.array([[40, -40, 0, 0],         # xd (global)
-#                [0, 0, -40, 40]])        # yd (global)
+X0 = np.array([[-40, 40, 0, 0],   # x0 (global)
+               [0,  0,  40, -40]])  # y0 (global)
+V0 = np.array([[0, 0, 0, 0],   # vx (global)
+               [0, 0, 0, 0]])  # vy (global)
+G  = np.array([[40, -40, 0, 0],         # xd (global)
+               [0, 0, -40, 40]])        # yd (global)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 # second scenario (6 agents, formation)
 
-M            = 6            # number of agents
-MAX_MPC      = 50           # MPC outer steps
-safety_R     = 0.2          # safety radius
-IS_COOP = [True, True, True, True, True, True]
-
-X0 = np.array([[-3,  -5, -4,  -2, -6, -2],   # x0 (global)
-               [-3,  -2,  -7, -5, -4, -6]])  # y0 (global)
-V0 = np.array([[-0.5, 0.5, 0, -0.5, -0.5, 0],   # vx (global)
-               [ 0.5, 0.5, 0.5, 0.5, -0.5, 0]])  # vy (global)
-G  = np.array([[0, 1, 2, 1, 0, -1],         # xd (global)
-               [0, 0, 1, 2, 2,  1]])        # yd (global)
+# M            = 6            # number of agents
+# MAX_MPC      = 50           # MPC outer steps
+# safety_R     = 0.2          # safety radius
+# IS_COOP = [True, True, True, True, True, True] 
+#
+# X0 = np.array([[-3,  -5, -4,  -2, -6, -2],   # x0 (global)
+#                [-3,  -2,  -7, -5, -4, -6]])  # y0 (global)
+# V0 = np.array([[-0.5, 0.5, 0, -0.5, -0.5, 0],   # vx (global)
+#                [ 0.5, 0.5, 0.5, 0.5, -0.5, 0]])  # vy (global)
+# G  = np.array([[0, 1, 2, 1, 0, -1],         # xd (global)
+#                [0, 0, 1, 2, 2,  1]])        # yd (global)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
  
